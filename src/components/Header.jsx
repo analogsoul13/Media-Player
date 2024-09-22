@@ -8,7 +8,7 @@ function Header() {
     <>
     <Navbar className="bg-body-tertiary shadow">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
           <i className="fa-solid fa-compact-disc fa-spin fa-xl" />
             {' '}
             Media Player

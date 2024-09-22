@@ -1,8 +1,13 @@
 import React from 'react'
+import VideoCard from './VideoCard'
 
 function Videos() {
   return (
-    <div>Videos</div>
+    <>
+    <div className="container-fluid border border-3 border-dark shadow p-2 mb-4">
+      <VideoCard />
+    </div>
+    </>
   )
 }
 

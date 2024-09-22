@@ -3,12 +3,17 @@ import { Row,Col } from 'react-bootstrap'
 import Add from '../components/Add'
 import Videos from '../components/Videos'
 import Category from '../components/Category'
+import { Link } from 'react-router-dom'
 
 function Dashboard() {
   return (
     <>
     <div className='container-fluid'>
-        <h2>Videos</h2>
+        <div className='mx-4 my-3 d-flex justify-content-between align-items-center'>
+            <h2>Videos</h2>
+            <Link to={'/his'} style={{textDecoration:'none', color:'red'}}><h6>Watch History</h6></Link>       
+        </div>
+
         <Row>
             <Col md={1}>
                 <Add />
