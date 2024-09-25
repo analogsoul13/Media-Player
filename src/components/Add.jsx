@@ -4,9 +4,36 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import { addVideoApi } from '../services/allApi';
 
 function Add() {
   const [show, setShow] = useState(false);
+  const [video, setVideo] = useState({
+    title:"", imageUrl:"", videoUrl:""
+  })
+
+  const handleAdd=async()=>{
+    console.log(video);
+    const {title,imageUrl,videoUrl}=video //object destructuring
+    if(!title || !imageUrl || !videoUrl){
+      alert('Enter Valid Input')
+    }
+    else{
+      const result = await addVideoApi(video)
+      if(result.status=201){
+        alert("Video Uploaded Succesfully")
+        setVideo({
+          title:"", imageUrl:"", videoUrl:""
+        })
+        handleClose()
+      }
+      else{
+        alert("Uploading Failed")
+        console.log(result);
+      }
+    }
+    
+  }
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,24 +56,24 @@ function Add() {
           {/* Form */}
           <div>
             <FloatingLabel controlId="floatingTitle" label="Add Video Title" className="mb-3">
-              <Form.Control type="text" placeholder="Add Video Title" />
+              <Form.Control onChange={(e)=>{setVideo({...video,title:e.target.value})}} type="text" placeholder="Add Video Title" />
             </FloatingLabel>
 
-            <FloatingLabel controlId="floatingImg" label="Vide Thumbnail URL">
-              <Form.Control type="text" placeholder="Video Thumbnail URL" className='mb-3'/>
+            <FloatingLabel controlId="floatingImg" label="Video Thumbnail URL">
+              <Form.Control onChange={(e)=>{setVideo({...video,imageUrl:e.target.value})}} type="text" placeholder="Video Thumbnail URL" className='mb-3'/>
             </FloatingLabel>
 
             <FloatingLabel controlId="floatingPassword" label="Youtube Video URL">
-              <Form.Control type="text" placeholder="Youtube Video URL" />
+              <Form.Control onChange={(e)=>{setVideo({...video,videoUrl:e.target.value})}} type="text" placeholder="Youtube Video URL" />
             </FloatingLabel>
           </div>
         </Modal.Body>
-
+          {/* Button */}
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">Upload</Button>
+          <Button onClick={handleAdd} variant="primary">Upload</Button>
         </Modal.Footer>
       </Modal>
     </>
