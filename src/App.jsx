@@ -6,6 +6,9 @@ import History from './pages/History'
 import { Routes,Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+
 
 function App() {
 
@@ -18,6 +21,7 @@ function App() {
         <Route path='/his' element={<History/>}/>
       </Routes>
       <Footer />
+      <ToastContainer/>
     </>
   )
 }
