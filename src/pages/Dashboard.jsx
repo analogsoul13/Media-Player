@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { Row,Col } from 'react-bootstrap'
 import Add from '../components/Add'
 import Videos from '../components/Videos'
@@ -6,7 +6,6 @@ import Category from '../components/Category'
 import { Link } from 'react-router-dom'
 
 function Dashboard() {
-    const [result,setResult] = useState({})
   return (
     <>
     <div className='container-fluid'>
@@ -17,10 +16,10 @@ function Dashboard() {
 
         <Row>
             <Col md={1}>
-                <Add setresult={setResult} />
+                <Add />
             </Col>
             <Col md={8}>
-                <Videos result={result} />
+                <Videos />
             </Col>
             <Col md={3}>
                 <Category />

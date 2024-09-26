@@ -5,9 +5,8 @@ import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { addVideoApi } from '../services/allApi';
-import { toast } from 'react-toastify';
 
-function Add({setresult}) {
+function Add() {
   const [show, setShow] = useState(false);
   const [video, setVideo] = useState({
     title:"", imageUrl:"", videoUrl:""
@@ -17,27 +16,19 @@ function Add({setresult}) {
     console.log(video);
     const {title,imageUrl,videoUrl}=video //object destructuring
     if(!title || !imageUrl || !videoUrl){
-    toast.warning('Enter Valid Input')
+      alert('Enter Valid Input')
     }
     else{
-
-      const watchUrl=video.videoUrl
-      const urls=watchUrl.split("v=")[1]
-      const embedUrl=`https://www.youtube.com/embed/${urls}?si=sLUzbIifGJbgZUSq&autoplay=1`
-      video.videoUrl=embedUrl
-
-
       const result = await addVideoApi(video)
       if(result.status=201){
-      toast.success("Video Uploaded Succesfully")
+        alert("Video Uploaded Succesfully")
         setVideo({
           title:"", imageUrl:"", videoUrl:""
         })
         handleClose()
-        setresult(result)
       }
       else{
-      toast.error("Uploading Failed")
+        alert("Uploading Failed")
         console.log(result);
       }
     }
